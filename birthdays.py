@@ -4,23 +4,22 @@ import re
 
 users = [
         {"name": "human1", 
-        "birthday": datetime(year=1988, month=1, day=26)
+        "birthday": "26.01.1998" # 26.01.1998
         },
         {"name": "human2", 
-        "birthday": datetime(year=1998, month=1, day=26)
+        "birthday": "26.01.1998" # 26.01.1998
         },
         {"name": "human3", 
-        "birthday": datetime(year=2001, month=1, day=22 )
+        "birthday": "22.01.2001" #22.01.2001
         }
     ]
 
 
 def get_birthdays_per_week(list_of_dicts):
-    """Колхзная версия"""
     current_date = datetime.now()
     birthdays = defaultdict(list)
     for human in list_of_dicts:
-        bd = human["birthday"]
+        bd = datetime.strptime(human["birthday"], '%d.%m.%Y')
         counter = 0
         while counter < 7:
             check_date = current_date + timedelta(days=counter)
